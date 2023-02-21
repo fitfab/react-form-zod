@@ -1,0 +1,20 @@
+.image-slides {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.image-contain {
+  width: 24%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  border: 1px solid lightslategray;
+  padding: 1rem;
+  background: rgba(235, 242, 245, 1);
+}
+
+.image-contain:hover {
+  transition: all ease-in-out 300ms;
+  transform: scale(1.5);
+}
