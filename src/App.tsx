@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, FormHTMLAttributes } from "react";
 import { z } from "zod";
 import reactLogo from "./assets/react.svg";
 import "@picocss/pico/css/pico.min.css";
@@ -15,15 +15,27 @@ function App() {
     phone: z.string(),
   });
 
-  console.log(isValidUUIDV4("0185355e-a900-57d8-09e1-1c8bb64924f5"));
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+    console.log("🚀 ~ handleSubmit ~ data", event.target, formData);
 
-  imageSizes.map((size, index) => {
-    console.log(index, size * 1, "🚀 ~ App ~ size", size % (index + 1));
+    for (const [key, value] of formData) {
+      console.info(`${key}: ${value}\n`);
+    }
+  };
+
+  useEffect(() => {
+    console.count("--| useEffect: NO ARRAY DEPENDENCIES ");
   });
 
-  const handleSubmit = (data) => {
-    console.log("🚀 ~ handleSubmit ~ data", data);
-  };
+  useEffect(() => {
+    console.count("--| useEffect: EMPTY ARRAY DEPENDENCIES ");
+  }, []);
+
+  useEffect(() => {
+    console.count(`--| useEffect: [count]=${count} ARRAY DEPENDENCIES`);
+  }, [count]);
 
   return (
     <main className="container">
@@ -37,28 +49,22 @@ function App() {
       </div>
       <h1>Vite + React + React-hook-form + Zod</h1>
       <div className="card">
-        <button
-          className="primary"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          UUID{" "}
-          {isValidUUIDV4("0185355e-a900-57d8-09e1-1c8bb64924f5")
-            ? "valid"
-            : "no bueno"}
+        <button className="" onClick={() => setCount((count) => count + 1)}>
+          count {count}
         </button>
       </div>
       <section>
-        <form action="" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <fieldset>
             <label htmlFor="name">Name</label>
             <input name="name" />
           </fieldset>
           <fieldset>
-            <label htmlFor="email">Name</label>
+            <label htmlFor="email">Email</label>
             <input name="email" type="email" />
           </fieldset>
+          <button type="submit">submit</button>
         </form>
-        <button type="submit">submit</button>
       </section>
 
       <section>
