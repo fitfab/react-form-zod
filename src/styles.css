@@ -1,3 +1,4 @@
+
 .image-slides {
   display: flex;
   justify-content: space-between;
@@ -11,10 +12,10 @@
   object-fit: contain;
   border: 1px solid lightslategray;
   padding: 1rem;
-  background: rgba(235, 242, 245, 1);
+  background: rgba(64, 64, 64, 0.2);
 }
 
 .image-contain:hover {
   transition: all ease-in-out 300ms;
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
