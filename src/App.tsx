@@ -60,7 +60,6 @@ function App() {
   });
 
   const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
-    console.info('onSubmit');
     console.log(data);
   };
 
@@ -77,7 +76,7 @@ function App() {
         <button
           type="button"
           className="main"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => setCount((oldCount) => oldCount + 1)}
         >
           count
           {count}
@@ -86,8 +85,11 @@ function App() {
       <section>
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset>
-            <label htmlFor="name">Name</label>
-            <input id="name" {...register('name')} />
+            <label htmlFor="name">
+              Name
+              <input type="text" id="name" {...register('name')} />
+            </label>
+
             {errors.name && (
               <span className="error">{errors.name?.message}</span>
             )}
