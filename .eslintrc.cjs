@@ -20,8 +20,13 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'react/react-in-jsx-scope': 0,
-    'react/jsx-props-no-spreading': 0,
-    'jsx-a11y/label-has-associated-control': 0,
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    // Note: you must disable the base rule as it
+    // can report incorrect errors
+    // ref: https://typescript-eslint.io/rules/no-unused-vars/#options
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
 };
