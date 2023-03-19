@@ -62,7 +62,7 @@ function App() {
   const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
     console.log(data);
   };
-
+  const foo = 'foo';
   return (
     <main
       // !NOTE: add extra attributes to test Prettier
