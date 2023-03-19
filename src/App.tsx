@@ -12,9 +12,14 @@ function App() {
   const imageSizes = [80, 150, 100, 300];
   const userSchema = z.object({
     name: z.string().min(1, { message: 'Name is required.' }),
-    email: z.string().min(1, { message: 'Email is required' }).email({ message: 'Invalid email.' }),
+    email: z
+      .string()
+      .min(1, { message: 'Email is required' })
+      .email({ message: 'Invalid email.' }),
     phone: z.string().min(10, { message: 'phone number is required' }),
-    terms: z.boolean().refine((val) => val === true, { message: 'Must agree to the terms.' }),
+    terms: z
+      .boolean()
+      .refine((val) => val === true, { message: 'Must agree to the terms.' }),
   });
 
   userSchema.required({
@@ -60,12 +65,21 @@ function App() {
   };
 
   return (
-    <main className="container">
-      <h1>Vite + React + React-hook-form + Zod</h1>
+    <main
+      // !NOTE: add extra attributes to test Prettier
+      className="container"
+      id="container"
+      aria-describedby="header-id"
+      data-miguel="miguel"
+    >
+      <h1 id="header-id">Vite + React + React-hook-form + Zod</h1>
       <div className="card">
-        <button type="button" className="main" onClick={() => setCount((count) => count + 1)}>
+        <button
+          type="button"
+          className="main"
+          onClick={() => setCount((count) => count + 1)}
+        >
           count
-          {' '}
           {count}
         </button>
       </div>
@@ -75,45 +89,36 @@ function App() {
             <label htmlFor="name">Name</label>
             <input id="name" {...register('name')} />
             {errors.name && (
-              <span className="error">
-                {errors.name?.message}
-              </span>
+              <span className="error">{errors.name?.message}</span>
             )}
           </fieldset>
           <fieldset>
             <label htmlFor="email">Email</label>
             <input id="email" type="text" {...register('email')} />
             {errors.email && (
-              <span className="error">
-                {errors.email?.message}
-              </span>
+              <span className="error">{errors.email?.message}</span>
             )}
           </fieldset>
           <fieldset>
             <label htmlFor="phone">Phone</label>
             <input type="number" id="phone" {...register('phone')} />
             {errors.phone && (
-              <span className="error">
-                {errors.phone?.message}
-              </span>
+              <span className="error">{errors.phone?.message}</span>
             )}
           </fieldset>
           <fieldset>
-
             <label htmlFor="terms">
-              <input type="checkbox" id="terms" {...register('terms')} />
-              {' '}
-              Agree to terms.
-              {' '}
+              <input type="checkbox" id="terms" {...register('terms')} /> Agree
+              to terms.{' '}
             </label>
 
             {errors.terms && (
-              <span className="error">
-                {errors.terms?.message}
-              </span>
+              <span className="error">{errors.terms?.message}</span>
             )}
           </fieldset>
-          <button type="submit" disabled={isSubmitting}>submit</button>
+          <button type="submit" disabled={isSubmitting}>
+            submit
+          </button>
         </form>
       </section>
 
@@ -121,17 +126,18 @@ function App() {
         <h4>CSS image:</h4>
         <code>width: 22%; aspect-ratio: 3/2; object-fit: contain;</code>
         <p>
-          Keepimg images of all sizes align and contain within define block.
-          {' '}
+          Keepimg images of all sizes align and contain within define block.{' '}
         </p>
 
         <div className="image-slides">
           {imageSizes.map((size, index) => {
             const bySize = size % (index + 1) === 0 ? 100 : 300;
+            const id = `${imageBaseUrl}_${index}`;
             return (
               <img
-                key={index}
+                key={id}
                 className="image-contain"
+                alt="some images"
                 src={`${imageBaseUrl}/${size}/${bySize}`}
               />
             );
