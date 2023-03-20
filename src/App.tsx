@@ -60,7 +60,7 @@ function App() {
   });
 
   const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
-    console.log(data);
+    console.log('hello', data);
   };
 
   return (

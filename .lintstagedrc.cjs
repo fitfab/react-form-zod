@@ -1,6 +1,6 @@
 module.exports = {
   '**/*.{ts,tsx}': [
-    // () => `tsc -p tsconfig.json --noemit`,
+    () => `tsc -p tsconfig.json --noemit`,
     'eslint -c .eslintrc.cjs --fix --max-warnings 7',
   ],
 };
